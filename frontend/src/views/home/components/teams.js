@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography } from '@material-ui/core';
 import Tier from './tier';
-import { TEAMS } from '../data/teams';
+import { TEAMS } from '../../../data/teams';
 
 /**
  * Teams component to display all teams in a tier
