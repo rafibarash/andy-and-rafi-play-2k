@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Box, Grid } from '@material-ui/core';
 
-import Matchup from './matchup';
+import Matchup from '../../../components/matchup';
 import Teams from './teams';
 
 const useStyles = makeStyles({

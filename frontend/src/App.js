@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
+import Routes from './routes';
 import Layout from './components/layout';
-import Showcase from './components/showcase';
-import Teams from './components/teams';
 
 /**
  * Main app component
  */
 const App = () => {
-  const [tier, setTier] = useState(0);
   return (
-    <Layout>
-      <Showcase tier={tier} setTier={setTier} />
-      <Teams tier={tier} setTier={setTier} />
-    </Layout>
+    <Router>
+      <Layout>
+        <Routes />
+      </Layout>
+    </Router>
   );
 };
 
