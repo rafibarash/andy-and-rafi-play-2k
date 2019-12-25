@@ -1,21 +1,35 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
-
-import Tier from './tier';
+import { Paper, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles({
-  root: {},
+  root: {
+    padding: '1.5rem',
+    minHeight: '150px',
+  },
+  name: {
+    marginBottom: '1rem',
+  },
+  noTeam: {
+    color: 'gray',
+  },
 });
 
 const Player = ({ name, team }) => {
   const classes = useStyles();
-  const [tier, setTier] = useState(0);
   return (
-    <>
-      <Typography variant="h5">{name}</Typography>
-      <Typography>{team}</Typography>
-    </>
+    <Paper className={classes.root}>
+      <Typography variant="h5" className={classes.name}>
+        {name}
+      </Typography>
+      {team ? (
+        <Typography variant="h6" color="primary">
+          {team}
+        </Typography>
+      ) : (
+        <Typography className={classes.noTeam}>No team selected...</Typography>
+      )}
+    </Paper>
   );
 };
 

@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <Section>
       <Typography variant="h1" className={classes.header}>
-        Homepage
+        Andy & Rafi Play 2k
       </Typography>
       <TabActions />
     </Section>

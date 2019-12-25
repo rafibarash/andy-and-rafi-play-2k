@@ -8,7 +8,6 @@ import SubmitMatchup from './submitMatchup';
 
 const useStyles = makeStyles({
   tabs: {
-    flexGrow: 1,
     marginBottom: '2rem',
   },
 });

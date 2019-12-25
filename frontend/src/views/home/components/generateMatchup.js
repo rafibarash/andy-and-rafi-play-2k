@@ -7,8 +7,8 @@ import Player from './player';
 import Tier from './tier';
 
 const useStyles = makeStyles({
-  actions: {
-    margin: '0 auto',
+  matchup: {
+    minWidth: '500px',
   },
 });
 
@@ -43,12 +43,13 @@ const Actions = ({ tier, setTier, setMatchup }) => {
 };
 
 const Matchup = ({ matchup, names }) => {
+  const classes = useStyles();
   return (
-    <Grid container>
-      <Grid sm={6} item>
+    <Grid container justify="center" alignItems="center" spacing={8}>
+      <Grid xs={4} item>
         <Player name={names[0]} team={matchup[0]} />
       </Grid>
-      <Grid sm={6} item>
+      <Grid xs={4} item>
         <Player name={names[1]} team={matchup[1]} />
       </Grid>
     </Grid>
@@ -56,7 +57,7 @@ const Matchup = ({ matchup, names }) => {
 };
 
 const GenerateMatchup = () => {
-  const [tier, setTier] = useState(0);
+  const [tier, setTier] = useState(2);
   const [matchup, setMatchup] = useState(['', '']);
   const names = ['Andy', 'Rafi'];
 
