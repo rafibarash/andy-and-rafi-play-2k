@@ -1,6 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Tabs, Tab, Typography } from '@material-ui/core';
+import { Paper, Tabs, Tab } from '@material-ui/core';
+
+import GenerateMatchup from './generateMatchup';
+import GenerateHomeTeam from './generateHomeTeam';
+import SubmitMatchup from './submitMatchup';
 
 const useStyles = makeStyles({
   tabs: {
@@ -28,41 +32,11 @@ const TabActions = () => {
           <Tab label="Submit Matchup" />
         </Tabs>
       </Paper>
-      {value === 0 && (
-        <>
-          <GenerateMatchup />
-        </>
-      )}
-      {value === 1 && (
-        <>
-          <GenerateHomeTeam />
-        </>
-      )}
-      {value === 2 && (
-        <>
-          <SubmitMatchup />
-        </>
-      )}
+      {value === 0 && <GenerateMatchup />}
+      {value === 1 && <GenerateHomeTeam />}
+      {value === 2 && <SubmitMatchup />}
     </>
   );
 };
-
-const GenerateMatchup = () => (
-  <>
-    <Typography variant="h3">Generate Matchup</Typography>
-  </>
-);
-
-const GenerateHomeTeam = () => (
-  <>
-    <Typography variant="h3">Generate Home Team</Typography>
-  </>
-);
-
-const SubmitMatchup = () => (
-  <>
-    <Typography variant="h3">Submit Matchup</Typography>
-  </>
-);
 
 export default TabActions;

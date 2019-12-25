@@ -21,14 +21,9 @@ const useStyles = makeStyles(theme => ({
  */
 const Tier = ({ tier, setTier }) => {
   const classes = useStyles();
-  const [teams, setTeams] = useState(TEAMS[tier]);
   const TIERS = ['Broken', 'Top', 'Mid', 'Scrubs'];
 
-  const handleChange = e => {
-    const tier = e.target.value;
-    setTier(tier);
-    setTeams(TEAMS[tier]);
-  };
+  const handleChange = e => setTier(e.target.value);
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
