@@ -14,13 +14,17 @@ const useStyles = makeStyles(theme => ({
     },
   },
   tabGrid: {
-    margin: '0 auto 1rem',
+    margin: '0 auto 2rem',
     [theme.breakpoints.up('md')]: {
       margin: 'inherit',
     },
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
+    borderBottom: `1px solid ${theme.palette.divider}`,
+    [theme.breakpoints.up('md')]: {
+      borderBottom: 'inherit',
+    },
     width: 225,
   },
   tabPanel: {

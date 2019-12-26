@@ -8,9 +8,10 @@ const useStyles = makeStyles({
     padding: '3rem',
     background: '#e3f2fd',
     textAlign: 'center',
+    margin: '0 auto',
   },
   content: {
-    maxWidth: '1000px',
+    maxWidth: '900px',
     margin: '0 auto',
   },
 });
