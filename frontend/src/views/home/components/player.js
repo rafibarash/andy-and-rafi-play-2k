@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Typography } from '@material-ui/core';
 
@@ -6,6 +6,8 @@ const useStyles = makeStyles({
   root: {
     padding: '1.5rem',
     minHeight: '150px',
+    width: '200px',
+    margin: '0 auto',
   },
   name: {
     marginBottom: '1rem',

@@ -9,9 +9,9 @@ const useStyles = makeStyles({
 const SubmitMatchup = () => {
   const classes = useStyles();
   return (
-    <>
+    <div className={classes.root}>
       <Typography variant="h3">Submit Matchup</Typography>
-    </>
+    </div>
   );
 };
 

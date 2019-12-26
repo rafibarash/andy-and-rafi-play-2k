@@ -9,9 +9,9 @@ const useStyles = makeStyles({
 const GenerateHomeTeam = () => {
   const classes = useStyles();
   return (
-    <>
+    <div className={classes.root}>
       <Typography variant="h3">Generate Home Team</Typography>
-    </>
+    </div>
   );
 };
 
