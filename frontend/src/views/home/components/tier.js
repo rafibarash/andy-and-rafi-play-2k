@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
-import { TEAMS } from '../../../data/teams';
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -21,14 +19,9 @@ const useStyles = makeStyles(theme => ({
  */
 const Tier = ({ tier, setTier }) => {
   const classes = useStyles();
-  const [teams, setTeams] = useState(TEAMS[tier]);
   const TIERS = ['Broken', 'Top', 'Mid', 'Scrubs'];
 
-  const handleChange = e => {
-    const tier = e.target.value;
-    setTier(tier);
-    setTeams(TEAMS[tier]);
-  };
+  const handleChange = e => setTier(e.target.value);
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);

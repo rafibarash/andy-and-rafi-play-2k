@@ -9,23 +9,13 @@ import { TEAMS } from '../../../data/teams';
  * @param {props} contains tier and setTier
  */
 const Teams = ({ tier, setTier }) => {
-  const [teams, setTeams] = useState(TEAMS[tier]);
-  const TIERS = ['Broken', 'Top', 'Mid', 'Scrubs'];
-
-  const handleTierChange = e => {
-    const tier = e.target.value;
-    setTier(tier);
-    setTeams(TEAMS[tier]);
-  };
-
   return (
     <Box>
-      <Tier tier={tier} setTier={setTier} />
       <Typography variant="h5" component="h3">
         Teams
       </Typography>
       <ul>
-        {teams.map(team => (
+        {TEAMS[tier].map(team => (
           <li key={team}>{team}</li>
         ))}
       </ul>

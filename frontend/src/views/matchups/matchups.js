@@ -5,7 +5,7 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import Matchup from './matchup';
 
 const Routes = () => {
-  const { path, url } = useRouteMatch();
+  const { path } = useRouteMatch();
   return (
     <Switch>
       <Route exact path={path}>
