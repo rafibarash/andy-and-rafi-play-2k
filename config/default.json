@@ -1,4 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://rafibarash:rafibarash@cluster0-izmnj.gcp.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "dummySecretToken"
-}
