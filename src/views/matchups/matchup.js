@@ -3,10 +3,13 @@ import { Typography } from '@material-ui/core';
 import { useParams } from 'react-router-dom';
 
 const Matchup = () => {
-  let { matchupId } = useParams();
+  const { matchupId } = useParams();
   return (
     <>
-      <Typography variant="h1">Matchup: {matchupId}</Typography>
+      <Typography variant="h1">
+        Matchup:
+        {matchupId}
+      </Typography>
     </>
   );
 };
