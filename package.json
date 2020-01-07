@@ -7,14 +7,18 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.1",
+    "node-fetch": "^2.6.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0"
   },
   "scripts": {
+    "dev": "ntl dev",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "run-p build:**",
+    "build:app": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -42,6 +46,8 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
+    "netlify-lambda": "^1.6.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1"
   }
 }

@@ -21,7 +21,7 @@ const MatchupForm = ({ stats, setStats, name }) => {
 
   const handleChange = e => {
     const { id, value } = e.target;
-    let key = id.split('-')[1];
+    const key = id.split('-')[1];
     setStats(prevStats => {
       const newStats = { ...prevStats };
       newStats[key] = value;
@@ -31,11 +31,9 @@ const MatchupForm = ({ stats, setStats, name }) => {
 
   return (
     <Paper className={classes.matchup}>
-      <Typography
-        component="h2"
-        variant="h5"
-        gutterBottom
-      >{`${name}'s Stats`}</Typography>
+      <Typography component="h2" variant="h5" gutterBottom>
+        {`${name}'s Stats`}
+      </Typography>
       {Object.entries(stats).map(([key, val]) => (
         <TextField
           id={`${name}-${key}`}
@@ -79,12 +77,20 @@ const SubmitMatchup = () => {
     return newStats;
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    console.log({
+    const matchupURL = '/.netlify/functions/matchup';
+    const matchup = {
       teamOneStats: cleanAndValidate(teamOneStats),
       teamTwoStats: cleanAndValidate(teamTwoStats),
+    };
+    const res = await fetch(matchupURL, {
+      method: 'POST',
+      body: matchup,
     });
+    console.log(res);
+    const json = await res.json();
+    console.log(json);
   };
 
   return (
