@@ -1,9 +1,8 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-import { useParams } from 'react-router-dom';
 
 const Matchup = () => {
-  const { matchupId } = useParams();
+  const matchupId = 1;
   return (
     <>
       <Typography variant="h1">

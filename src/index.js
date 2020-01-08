@@ -12,8 +12,8 @@ ReactDOM.render(
     <CssBaseline />
     <App />
   </ThemeProvider>,
-  document.querySelector('#root')
-  // document.getElementById('root')
+  // document.querySelector('#root')
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

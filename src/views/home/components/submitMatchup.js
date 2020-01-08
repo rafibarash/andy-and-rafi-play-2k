@@ -21,7 +21,7 @@ const MatchupForm = ({ stats, setStats, name }) => {
 
   const handleChange = e => {
     const { id, value } = e.target;
-    let key = id.split('-')[1];
+    const key = id.split('-')[1];
     setStats(prevStats => {
       const newStats = { ...prevStats };
       newStats[key] = value;
@@ -31,11 +31,9 @@ const MatchupForm = ({ stats, setStats, name }) => {
 
   return (
     <Paper className={classes.matchup}>
-      <Typography
-        component="h2"
-        variant="h5"
-        gutterBottom
-      >{`${name}'s Stats`}</Typography>
+      <Typography component="h2" variant="h5" gutterBottom>
+        {`${name}'s Stats`}
+      </Typography>
       {Object.entries(stats).map(([key, val]) => (
         <TextField
           id={`${name}-${key}`}
@@ -59,7 +57,7 @@ const SubmitMatchup = () => {
   const [teamTwoStats, setTeamTwoStats] = useState(defaultMatchupStats);
   const names = ['Andy', 'Rafi'];
 
-  const cleanAndValidate = stats => {
+  const cleanAndValidate = (stats, name) => {
     const newStats = {};
     let numValidStats = 0;
     for (const [key, val] of Object.entries(stats)) {
@@ -76,15 +74,27 @@ const SubmitMatchup = () => {
     if (numValidStats === 0) {
       throw Error('No stats filled out.');
     }
+    // add name
+    newStats.name = name;
     return newStats;
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    console.log({
-      teamOneStats: cleanAndValidate(teamOneStats),
-      teamTwoStats: cleanAndValidate(teamTwoStats),
+    const matchup = {
+      teamOneStats: cleanAndValidate(teamOneStats, names[0]),
+      teamTwoStats: cleanAndValidate(teamTwoStats, names[1]),
+    };
+    const res = await fetch('/.netlify/functions/server/matchup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(matchup),
     });
+    console.log(res);
+    const json = await res.json();
+    console.log(json);
   };
 
   return (
