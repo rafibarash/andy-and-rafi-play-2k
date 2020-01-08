@@ -11,6 +11,7 @@ import {
   TableRow,
   Paper,
   CircularProgress,
+  Button,
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -38,6 +39,11 @@ const Matchup = () => {
 
 const MatchupTable = ({ matchups }) => {
   const classes = useStyles();
+
+  const handleClick = id => {
+    console.log(id);
+  };
+
   return (
     <Paper className={classes.tableRoot}>
       <TableContainer className={classes.tableContainer}>
@@ -69,7 +75,11 @@ const MatchupTable = ({ matchups }) => {
                 }
                 return (
                   <TableRow key={id}>
-                    <TableCell component="th">{id}</TableCell>
+                    <TableCell component="th">
+                      <Button color="primary" onClick={() => handleClick(id)}>
+                        {id}
+                      </Button>
+                    </TableCell>
                     <TableCell
                       align="right"
                       style={{ backgroundColor: color1 }}
