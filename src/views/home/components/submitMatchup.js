@@ -172,10 +172,7 @@ const SubmitMatchup = () => {
         </Button>
       </form>
       {isLoading && (
-        <>
-          <br />
           <CircularProgress />
-        </>
       )}
 
       <Snackbar

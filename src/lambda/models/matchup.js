@@ -1,12 +1,8 @@
 const mongoose = require('mongoose');
 
-const MatchupSchema = new mongoose.Schema({
+const TeamStatsSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
-  },
-  matchup_id: {
-    type: Number,
     required: true,
   },
   points: {
@@ -84,6 +80,21 @@ const MatchupSchema = new mongoose.Schema({
   dunks: {
     type: Number,
     required: false,
+  },
+});
+
+const MatchupSchema = mongoose.Schema({
+  teamOneStats: {
+    type: TeamStatsSchema,
+    required: true,
+  },
+  teamTwoStats: {
+    type: TeamStatsSchema,
+    required: true,
+  },
+  matchupID: {
+    type: Number,
+    required: true,
   },
   date: {
     type: Date,
