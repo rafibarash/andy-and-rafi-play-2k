@@ -5,6 +5,7 @@ import { Grid, Tabs, Tab } from '@material-ui/core';
 import GenerateMatchup from './generateMatchup';
 import GenerateHomeTeam from './generateHomeTeam';
 import SubmitMatchup from './submitMatchup';
+import Matchups from './matchups';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -55,12 +56,14 @@ const TabActions = () => {
           <Tab label="Generate Matchup" />
           <Tab label="Generate Home Team" />
           <Tab label="Submit Matchup" />
+          <Tab label="View Past Matchups" />
         </Tabs>
       </Grid>
       <Grid md={9} item className={classes.tabPanel}>
         {value === 0 && <GenerateMatchup />}
         {value === 1 && <GenerateHomeTeam />}
         {value === 2 && <SubmitMatchup />}
+        {value === 3 && <Matchups />}
       </Grid>
     </Grid>
   );

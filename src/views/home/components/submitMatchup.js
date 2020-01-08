@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Paper, Grid, TextField, Button } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import {
+  Typography,
+  Paper,
+  Grid,
+  TextField,
+  Button,
+  Snackbar,
+  SnackbarContent,
+  IconButton,
+  CircularProgress,
+} from '@material-ui/core';
 import defaultMatchupStats from '../../../data/matchup';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {},
   matchups: {
     marginBottom: '1rem',
@@ -14,7 +25,13 @@ const useStyles = makeStyles({
   input: {
     marginBottom: '10px',
   },
-});
+  success: {
+    backgroundColor: theme.palette.success[500],
+  },
+  error: {
+    backgroundColor: theme.palette.error[500],
+  },
+}));
 
 const MatchupForm = ({ stats, setStats, name }) => {
   const classes = useStyles();
@@ -55,7 +72,23 @@ const SubmitMatchup = () => {
   const classes = useStyles();
   const [teamOneStats, setTeamOneStats] = useState(defaultMatchupStats);
   const [teamTwoStats, setTeamTwoStats] = useState(defaultMatchupStats);
+  const [isLoading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [snackMessage, setSnackMessage] = useState('');
   const names = ['Andy', 'Rafi'];
+
+  const displaySnackbar = msg => {
+    setSnackMessage(msg);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const cleanAndValidate = (stats, name) => {
     const newStats = {};
@@ -72,7 +105,7 @@ const SubmitMatchup = () => {
     }
     // if no valid stats, raise error
     if (numValidStats === 0) {
-      throw Error('No stats filled out.');
+      throw Error('Each matchup must contain 1+ stats.');
     }
     // add name
     newStats.name = name;
@@ -81,20 +114,28 @@ const SubmitMatchup = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const matchup = {
-      teamOneStats: cleanAndValidate(teamOneStats, names[0]),
-      teamTwoStats: cleanAndValidate(teamTwoStats, names[1]),
-    };
-    const res = await fetch('/.netlify/functions/server/matchup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(matchup),
-    });
-    console.log(res);
-    const json = await res.json();
-    console.log(json);
+    setLoading(true);
+    try {
+      const matchup = {
+        teamOneStats: cleanAndValidate(teamOneStats, names[0]),
+        teamTwoStats: cleanAndValidate(teamTwoStats, names[1]),
+      };
+      const res = await fetch('/.netlify/functions/server/matchup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(matchup),
+      });
+      if (!res.ok) {
+        throw Error('Trouble connecting to database.');
+      }
+      displaySnackbar('');
+    } catch (err) {
+      console.error(err.message);
+      displaySnackbar(err.message);
+    }
+    setLoading(false);
   };
 
   return (
@@ -130,6 +171,37 @@ const SubmitMatchup = () => {
           Submit Matchup
         </Button>
       </form>
+      {isLoading && (
+        <>
+          <br />
+          <CircularProgress />
+        </>
+      )}
+
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={open}
+        autoHideDuration={5000}
+        onClose={handleClose}
+      >
+        <SnackbarContent
+          className={snackMessage ? classes.error : classes.success}
+          message={snackMessage || 'Matchup successfully entered!'}
+          action={
+            <IconButton
+              size="small"
+              aria-label="close"
+              color="inherit"
+              onClick={handleClose}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          }
+        />
+      </Snackbar>
     </div>
   );
 };
