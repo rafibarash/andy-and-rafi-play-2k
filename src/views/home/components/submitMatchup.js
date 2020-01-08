@@ -57,7 +57,7 @@ const SubmitMatchup = () => {
   const [teamTwoStats, setTeamTwoStats] = useState(defaultMatchupStats);
   const names = ['Andy', 'Rafi'];
 
-  const cleanAndValidate = stats => {
+  const cleanAndValidate = (stats, name) => {
     const newStats = {};
     let numValidStats = 0;
     for (const [key, val] of Object.entries(stats)) {
@@ -74,19 +74,23 @@ const SubmitMatchup = () => {
     if (numValidStats === 0) {
       throw Error('No stats filled out.');
     }
+    // add name
+    newStats.name = name;
     return newStats;
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const matchupURL = '/.netlify/functions/matchup';
     const matchup = {
-      teamOneStats: cleanAndValidate(teamOneStats),
-      teamTwoStats: cleanAndValidate(teamTwoStats),
+      teamOneStats: cleanAndValidate(teamOneStats, names[0]),
+      teamTwoStats: cleanAndValidate(teamTwoStats, names[1]),
     };
-    const res = await fetch(matchupURL, {
+    const res = await fetch('/.netlify/functions/server/matchup', {
       method: 'POST',
-      body: matchup,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(matchup),
     });
     console.log(res);
     const json = await res.json();
