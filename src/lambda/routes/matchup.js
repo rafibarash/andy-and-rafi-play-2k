@@ -12,6 +12,10 @@ router.get('/', async (req, res) => {
   try {
     // Get all matchups
     const rawMatchups = await Matchup.find();
+    // Handle no matchup found
+    if (!rawMatchups || rawMatchups.length === 0) {
+      return res.status(500).json({ msg: 'No matchups currently exist.' });
+    }
     const matchups = [];
     // Loop through matchups selecting only key stats
     for (const matchup of rawMatchups) {
@@ -59,7 +63,7 @@ router.get('/:matchupID', async (req, res) => {
       {
         matchupID: req.params.matchupID,
       },
-      '-id'
+      '-_id -__v'
     );
 
     // Handle no matchup found
@@ -95,7 +99,7 @@ router.post('/', async (req, res) => {
     const lastMatchup = await Matchup.findOne({}, 'matchupID').sort(
       '-matchupID'
     ); // get highest existing matchupID
-    let curID = 0;
+    let curID = 1;
     if (lastMatchup && lastMatchup.matchupID) {
       curID = lastMatchup.matchupID + 1; // curID = highest existing matchupID + 1
     }
