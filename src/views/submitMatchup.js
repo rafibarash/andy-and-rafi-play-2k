@@ -12,7 +12,7 @@ import {
   IconButton,
   CircularProgress,
 } from '@material-ui/core';
-import defaultMatchupStats from '../../../data/matchup';
+import defaultMatchupStats from '../data/matchup';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -120,7 +120,9 @@ const SubmitMatchup = () => {
         teamOneStats: cleanAndValidate(teamOneStats, names[0]),
         teamTwoStats: cleanAndValidate(teamTwoStats, names[1]),
       };
-      const res = await fetch('/.netlify/functions/server/matchup', {
+      const matchup_url = '/.netlify/functions/server/matchup';
+      // const matchup_url = '/api/matchup';
+      const res = await fetch(matchup_url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -171,9 +173,7 @@ const SubmitMatchup = () => {
           Submit Matchup
         </Button>
       </form>
-      {isLoading && (
-          <CircularProgress />
-      )}
+      {isLoading && <CircularProgress />}
 
       <Snackbar
         anchorOrigin={{

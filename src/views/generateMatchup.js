@@ -10,7 +10,7 @@ import {
   Paper,
   Typography,
 } from '@material-ui/core';
-import generateMatchup from '../../../utils/matchup';
+import generateMatchup from '../utils/matchup';
 
 const useStyles = makeStyles(theme => ({
   actions: {

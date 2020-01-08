@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Typography } from '@material-ui/core';
-import { getRandomInt } from '../../../utils/util';
+import { getRandomInt } from '../utils/util';
 
 const useStyles = makeStyles({
   root: {},
@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-const GenerateHomeTeam = () => {
+const GenerateHome = () => {
   const classes = useStyles();
   const [home, setHome] = useState('');
   const names = ['Andy', 'Rafi'];
@@ -53,4 +53,4 @@ const GenerateHomeTeam = () => {
   );
 };
 
-export default GenerateHomeTeam;
+export default GenerateHome;

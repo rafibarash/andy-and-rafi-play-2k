@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Tabs, Tab } from '@material-ui/core';
 
 import GenerateMatchup from './generateMatchup';
-import GenerateHomeTeam from './generateHomeTeam';
+import GenerateHome from './generateHome';
 import SubmitMatchup from './submitMatchup';
 import Matchups from './matchups';
 
@@ -61,7 +61,7 @@ const TabActions = () => {
       </Grid>
       <Grid md={9} item className={classes.tabPanel}>
         {value === 0 && <GenerateMatchup />}
-        {value === 1 && <GenerateHomeTeam />}
+        {value === 1 && <GenerateHome />}
         {value === 2 && <SubmitMatchup />}
         {value === 3 && <Matchups />}
       </Grid>
