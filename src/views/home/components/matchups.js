@@ -57,6 +57,7 @@ const MatchupTable = ({ matchups }) => {
           <TableBody>
             {matchups.map(
               ({ id, date, winner, teamOneStats, teamTwoStats }) => {
+                // determine if color is green (winner) or red (loser)
                 let color1 = null;
                 let color2 = null;
                 if (winner === teamOneStats.name) {
