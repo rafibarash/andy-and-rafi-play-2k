@@ -2,7 +2,7 @@ export const BROKEN = ['Lakers', 'Bucks', 'Clippers'];
 
 export const TOP = [
   'Rockets',
-  'Sixers',
+  'Jazz',
   'Mavs',
   'Celtics',
   'Heat',
@@ -11,20 +11,21 @@ export const TOP = [
 ];
 
 export const MID = [
-  'Jazz',
+  'Sixers',
   'Pacers',
   'Suns',
   'Kings',
   'Blazers',
   'Thunder',
   'Wolves',
-  'Magic',
   'Nets',
-  'Pistons',
+  'Grizzlies',
 ];
 
 export const SCRUB = [
+  'Magic',
   'Hawks',
+  'Pistons',
   'Spurs',
   'Pelicans',
   'Hornets',
@@ -32,7 +33,6 @@ export const SCRUB = [
   'Wizards',
   'Warriors',
   'Cavs',
-  'Grizzlies',
   'Knicks',
 ];
 
