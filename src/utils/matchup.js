@@ -6,8 +6,7 @@
  *
  * Broken teams get 1 suicide
  * Top teams get 1 random & 1 suicide
- * Mid teams get 2 randoms & 1 suicide
- * Scrubs get 2 randoms & 1 suicide
+ * Mid/Scrubs teams get 2 randoms & 1 suicide
  *
  */
 

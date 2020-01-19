@@ -23,10 +23,6 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 450,
     margin: '0 auto',
   },
-  tableContainer: {
-    maxHeight: 500,
-  },
-
   matchupBtn: {
     '&:hover': {
       background: 'inherit',
@@ -59,12 +55,8 @@ const MatchupTable = ({ matchups, setMatchupID }) => {
 
   return (
     <Paper className={classes.tableRoot}>
-      <TableContainer className={classes.tableContainer}>
-        <Table
-          stickyHeader
-          className={classes.table}
-          aria-label="previous matchups table"
-        >
+      <TableContainer>
+        <Table aria-label="previous matchups table">
           <TableHead>
             <TableRow>
               <TableCell>ID #</TableCell>
@@ -284,6 +276,7 @@ const Matchups = () => {
         setMatchups(json.matchups);
       } catch (err) {
         console.error(err.message);
+        setMatchups([]);
       }
     };
     fetchMatchups();
@@ -296,7 +289,13 @@ const Matchups = () => {
           {matchupID ? (
             <Matchup matchupID={matchupID} setMatchupID={setMatchupID} />
           ) : (
-            <MatchupTable matchups={matchups} setMatchupID={setMatchupID} />
+            <>
+              {matchups.length === 0 ? (
+                <Typography>No matchup data found.</Typography>
+              ) : (
+                <MatchupTable matchups={matchups} setMatchupID={setMatchupID} />
+              )}
+            </>
           )}
         </>
       ) : (
